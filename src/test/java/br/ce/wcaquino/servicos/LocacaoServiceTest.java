@@ -1,7 +1,11 @@
 package br.ce.wcaquino.servicos;
 
+import static br.ce.wcaquino.matchers.MatchersProprios.caiEm;
+import static br.ce.wcaquino.matchers.MatchersProprios.caiNumDomingo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -19,6 +23,7 @@ import org.junit.rules.ExpectedException;
 import br.ce.wcaquino.entidades.Filme;
 import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.matchers.MatchersProprios;
 import br.ce.wcaquino.utils.DataUtils;
 import exceptions.FilmeSemEstoqueException;
 import exceptions.LocadoraException;
@@ -200,7 +205,10 @@ public class LocacaoServiceTest {
 		
 		Locacao resultado = service.alugarFilme(usuario, filmes);
 		
-		boolean verificacao = DataUtils.verificarDiaSemana(resultado.getDataRetorno(), Calendar.SUNDAY);
-		assertFalse(verificacao);
+//		boolean verificacao = DataUtils.verificarDiaSemana(resultado.getDataRetorno(), Calendar.SUNDAY);
+//		assertFalse(verificacao);
+		
+//		assertNotEquals(resultado.getDataRetorno(), caiEm(Calendar.SUNDAY));
+		assertNotEquals(resultado.getDataRetorno(), caiNumDomingo());
 	}
 }
