@@ -1,19 +1,16 @@
 package br.ce.wcaquino.servicos;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.core.Is;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -25,10 +22,12 @@ import br.ce.wcaquino.entidades.Usuario;
 import br.ce.wcaquino.utils.DataUtils;
 import exceptions.FilmeSemEstoqueException;
 import exceptions.LocadoraException;
-import junit.framework.Assert;
 
 public class LocacaoServiceTest {
 
+	private static final Calendar dataHoje = Calendar.getInstance();
+	private static final int diaHoje = dataHoje.get(Calendar.DAY_OF_WEEK);
+	
 	private LocacaoService service;
 	
 	@Rule
@@ -57,7 +56,13 @@ public class LocacaoServiceTest {
 		// verificacao
 		error.checkThat(locacao.getValor(), CoreMatchers.is(5.0));
 		assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
-		assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
+		
+		if(diaHoje == Calendar.SATURDAY) {
+			assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(2)));
+		}else {
+			assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
+		}
+		
 
 	}
 
@@ -184,5 +189,18 @@ public class LocacaoServiceTest {
 		Locacao resultado = service.alugarFilme(usuario, filmes);
 		
 		assertEquals(14.0, resultado.getValor(), 0.01);
+	}
+	
+	@Test
+	public void naoDeveDevolverFilmeNoDomingo() throws FilmeSemEstoqueException, LocadoraException {
+		
+		Usuario usuario = new Usuario("Usuário 1");
+		List<Filme> filmes = Arrays.asList(
+				new Filme("Filme 1", 2, 4.0));
+		
+		Locacao resultado = service.alugarFilme(usuario, filmes);
+		
+		boolean verificacao = DataUtils.verificarDiaSemana(resultado.getDataRetorno(), Calendar.SUNDAY);
+		assertFalse(verificacao);
 	}
 }
