@@ -129,67 +129,67 @@ public class LocacaoServiceTest {
 		
 	}
 	
-	@Test
-	public void devePagar75PorCentoNoFilme3() throws FilmeSemEstoqueException, LocadoraException {
-		
-		Usuario usuario = new Usuario("Usuário 1");
-		List<Filme> filmes = Arrays.asList(
-				new Filme("Filme 1", 2, 4.0),
-				new Filme("Filme 2", 2, 4.0),
-				new Filme("Filme 3", 2, 4.0));
-		
-		Locacao resultado = service.alugarFilme(usuario, filmes);
-		
-		assertEquals(11.0, resultado.getValor(), 0.01);
-	}
-	
-	@Test
-	public void devePagar50PorCentoNoFilme4() throws FilmeSemEstoqueException, LocadoraException {
-		
-		Usuario usuario = new Usuario("Usuário 1");
-		List<Filme> filmes = Arrays.asList(
-				new Filme("Filme 1", 2, 4.0),
-				new Filme("Filme 2", 2, 4.0),
-				new Filme("Filme 3", 2, 4.0),
-				new Filme("Filme 4", 2, 4.0));
-		
-		Locacao resultado = service.alugarFilme(usuario, filmes);
-		
-		assertEquals(13.0, resultado.getValor(), 0.01);
-	}
-	
-	@Test
-	public void devePagar25PorCentoNoFilme5() throws FilmeSemEstoqueException, LocadoraException {
-		
-		Usuario usuario = new Usuario("Usuário 1");
-		List<Filme> filmes = Arrays.asList(
-				new Filme("Filme 1", 2, 4.0),
-				new Filme("Filme 2", 2, 4.0),
-				new Filme("Filme 3", 2, 4.0),
-				new Filme("Filme 4", 2, 4.0),
-				new Filme("Filme 5", 2, 4.0));
-		
-		Locacao resultado = service.alugarFilme(usuario, filmes);
-		
-		assertEquals(14.0, resultado.getValor(), 0.01);
-	}
-	
-	@Test
-	public void sextoFilmeDeveFicarDeGraca() throws FilmeSemEstoqueException, LocadoraException {
-		
-		Usuario usuario = new Usuario("Usuário 1");
-		List<Filme> filmes = Arrays.asList(
-				new Filme("Filme 1", 2, 4.0),
-				new Filme("Filme 2", 2, 4.0),
-				new Filme("Filme 3", 2, 4.0),
-				new Filme("Filme 4", 2, 4.0),
-				new Filme("Filme 5", 2, 4.0),
-				new Filme("Filme 6", 2, 4.0));
-		
-		Locacao resultado = service.alugarFilme(usuario, filmes);
-		
-		assertEquals(14.0, resultado.getValor(), 0.01);
-	}
+//	@Test
+//	public void devePagar75PorCentoNoFilme3() throws FilmeSemEstoqueException, LocadoraException {
+//		
+//		Usuario usuario = new Usuario("Usuário 1");
+//		List<Filme> filmes = Arrays.asList(
+//				new Filme("Filme 1", 2, 4.0),
+//				new Filme("Filme 2", 2, 4.0),
+//				new Filme("Filme 3", 2, 4.0));
+//		
+//		Locacao resultado = service.alugarFilme(usuario, filmes);
+//		
+//		assertEquals(11.0, resultado.getValor(), 0.01);
+//	}
+//	
+//	@Test
+//	public void devePagar50PorCentoNoFilme4() throws FilmeSemEstoqueException, LocadoraException {
+//		
+//		Usuario usuario = new Usuario("Usuário 1");
+//		List<Filme> filmes = Arrays.asList(
+//				new Filme("Filme 1", 2, 4.0),
+//				new Filme("Filme 2", 2, 4.0),
+//				new Filme("Filme 3", 2, 4.0),
+//				new Filme("Filme 4", 2, 4.0));
+//		
+//		Locacao resultado = service.alugarFilme(usuario, filmes);
+//		
+//		assertEquals(13.0, resultado.getValor(), 0.01);
+//	}
+//	
+//	@Test
+//	public void devePagar25PorCentoNoFilme5() throws FilmeSemEstoqueException, LocadoraException {
+//		
+//		Usuario usuario = new Usuario("Usuário 1");
+//		List<Filme> filmes = Arrays.asList(
+//				new Filme("Filme 1", 2, 4.0),
+//				new Filme("Filme 2", 2, 4.0),
+//				new Filme("Filme 3", 2, 4.0),
+//				new Filme("Filme 4", 2, 4.0),
+//				new Filme("Filme 5", 2, 4.0));
+//		
+//		Locacao resultado = service.alugarFilme(usuario, filmes);
+//		
+//		assertEquals(14.0, resultado.getValor(), 0.01);
+//	}
+//	
+//	@Test
+//	public void sextoFilmeDeveFicarDeGraca() throws FilmeSemEstoqueException, LocadoraException {
+//		
+//		Usuario usuario = new Usuario("Usuário 1");
+//		List<Filme> filmes = Arrays.asList(
+//				new Filme("Filme 1", 2, 4.0),
+//				new Filme("Filme 2", 2, 4.0),
+//				new Filme("Filme 3", 2, 4.0),
+//				new Filme("Filme 4", 2, 4.0),
+//				new Filme("Filme 5", 2, 4.0),
+//				new Filme("Filme 6", 2, 4.0));
+//		
+//		Locacao resultado = service.alugarFilme(usuario, filmes);
+//		
+//		assertEquals(14.0, resultado.getValor(), 0.01);
+//	}
 	
 	@Test
 	public void naoDeveDevolverFilmeNoDomingo() throws FilmeSemEstoqueException, LocadoraException {
