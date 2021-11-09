@@ -2,6 +2,7 @@ package br.ce.wcaquino.servicos;
 
 import static br.ce.wcaquino.matchers.MatchersProprios.caiEm;
 import static br.ce.wcaquino.matchers.MatchersProprios.caiNumDomingo;
+import static br.ce.wcaquino.matchers.MatchersProprios.eHojeComDiferencaDias;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -60,12 +61,15 @@ public class LocacaoServiceTest {
 
 		// verificacao
 		error.checkThat(locacao.getValor(), CoreMatchers.is(5.0));
-		assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
+		//assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
+		error.checkThat(locacao.getDataLocacao(), eHojeComDiferencaDias(0));
 		
 		if(diaHoje == Calendar.SATURDAY) {
-			assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(2)));
+			//assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(2)));
+			error.checkThat(locacao.getDataRetorno(), eHojeComDiferencaDias(2));
 		}else {
-			assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
+			//assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
+			error.checkThat(locacao.getDataRetorno(), eHojeComDiferencaDias(1));
 		}
 		
 
